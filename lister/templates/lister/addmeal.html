@@ -1,0 +1,15 @@
+<form action="{% url 'lister:new_meal' %}" method="post">
+    {% csrf_token %}
+    <input
+            type="text"
+            placeholder="Name of meal"
+            name="name"
+            style="width: auto; display: block"
+    >
+    <input
+            type="text"
+            placeholder='Ingredients like a,b,c ...'
+            name="ingredients"
+            style="width: 50%">
+    <input type="submit" value="Add">
+</form>

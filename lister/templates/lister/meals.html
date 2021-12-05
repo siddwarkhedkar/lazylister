@@ -1,0 +1,29 @@
+<body>
+<div>
+    <a href={% url 'lister:index' %}><button>Home</button></a>
+</div>
+<div>
+{% if all_meals %}
+    <ul>
+    {% for meal in all_meals %}
+        <li><a href="{% url 'lister:ingredient_list' meal.name %}">{{ meal.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% endif %}
+</div>
+<div>
+<form action="{% url "lister:remove_meal" %}" method="post">
+    {% csrf_token %}
+    <select name="delete-meal-id">
+        {% for meal in all_meals %}
+            {% ifequal meal.id selected_meal.id %}
+                <option value="{{meal.id}}" selected="selected">{{ meal.name}}</option>
+            {% else %}
+                <option value="{{meal.id}}">{{meal.name}}</option>
+            {% endifequal %}
+        {% endfor %}
+    </select>
+    <input type="submit" value="Remove">
+</form>
+</div>
+</body>

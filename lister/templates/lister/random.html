@@ -1,0 +1,28 @@
+{% if random_meals %}
+    <h1>You're welcome, no more jhagda and time wastage</h1>
+    <div>
+        <a href={% url 'lister:index' %}><button>Home</button></a>
+    </div>
+    <div>
+        <h2>Meals to cook</h2>
+        <ul>
+        {% for meal in random_meals %}
+            <li>{{ meal }}</li>
+        {% endfor %}
+        </ul>
+    </div>
+    <div>
+        <h2>Ingredients to shop for!</h2>
+        {% if all_ingredients %}
+            <ul>
+                {% for item in all_ingredients %}
+                <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <h4>Nothing to shop for!</h4>
+        {% endif %}
+    </div>
+{% else %}
+    <h3>No meals available to select</h3>
+{% endif %}
